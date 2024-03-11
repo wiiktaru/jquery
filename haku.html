@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $.getJSON(
+          "http://a41d.k.time4vps.cloud:3001/henkilot",
+          function (data) {
+            $('[name="submit"]').click(function () {
+              var name = $("#nimi").val();
+              var puhelin = $("#puhelin");
+
+              data.forEach((element) => {
+                if (element.nimi === name) {
+                  puhelin.val(element.puhelin);
+                }
+              });
+            });
+          }
+        );
+      });
+    </script>
+  </head>
+  <body>
+    <div id="nav">
+      <ul>
+        <li><a href="index.html">Alku</a></li>
+      </ul>
+    </div>
+    <form id="form" name="form">
+      <th>Syötä nimi:</th>
+      <td>
+        <input
+          name="nimi"
+          id="nimi"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+      <td>
+        <input
+          name="puhelin"
+          id="puhelin"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input name="submit" type="button" value="Hae puhelinnumero" />
+      </td>
+    </form>
+  </body>
+</html>

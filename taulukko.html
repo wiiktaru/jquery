@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--alla oleva skripti lisätty tehtävän ohjeen mukaisesti-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  </head>
+  <body>
+    <div id="nav">
+      <ul>
+        <li><a href="index.html">Alku</a></li>
+      </ul>
+    </div>
+    <h1>Puhelinluettelo</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nimi</th>
+          <th>Numero</th>
+        </tr>
+      </thead>
+      <tbody id="data-output"></tbody>
+    </table>
+
+    <p id="demo"></p>
+
+    <!--alla oleva skripti lisätty tehtävän ohjeen mukaisesti-->
+    <script>
+      $(document).ready(function () {
+        // FETCHING DATA FROM JSON FILE
+        $.getJSON(
+          "http://a41d.k.time4vps.cloud:3001/henkilot",
+          function (data) {
+            // TÄSSÄ MUODOSTA TAULUKKO DATASTA
+
+            let placeholder = document.querySelector("#data-output");
+            let out = "";
+
+            for (let henkilo of data) {
+              out += `
+                <tr>
+                    <td>${henkilo.nimi}</td>
+                    <td>${henkilo.puhelin}</td>
+                    </tr>
+                    `;
+            }
+
+            placeholder.innerHTML = out;
+          }
+        );
+      });
+    </script>
+  </body>
+</html>
